@@ -6,6 +6,18 @@ public class TournamentSearch {
 		
 		// Gets the length of the array 
 		int arrayLength = numArray.length;
+		System.out.println(arrayLength);
+		
+		for ( int i = 0; i < arrayLength; i++ ) {
+			System.out.print(" " + numArray[i] +  " ");
+		}
+		System.out.println();
+		
+		// Checks for arrays of length 3
+		if ( arrayLength == 3 ) {
+			int out = middle( numArray );
+			return out;
+		}
 		
 		// Checks to see if array is 2 then gets the min of the two and returns it
 		if (arrayLength == 2) {
@@ -43,6 +55,24 @@ public class TournamentSearch {
 		
 		// Recursively calls itself until the checks at the top of method returns
 		return searchForSecondLargest(newArray);
+	}
+	
+	// Gets the number that isn't smallest nor largest
+	public int middle(int[] numArray) {
+		
+		// Gets the largest of the numbers
+		int largest = Math.max( Math.max(numArray[0], numArray[1]), Math.max(numArray[1], numArray[2]) );
+		int tempLargest = Math.min(numArray[0], numArray[1]);
+		
+		for ( int i = 0; i < numArray.length; i++) {
+			
+			if ( numArray[i] != largest ) {
+				if ( tempLargest < numArray[i] ) {
+					tempLargest = numArray[i];
+				}
+			}
+		}
+		return tempLargest;
 	}
 	
 }
