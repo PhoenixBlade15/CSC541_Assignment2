@@ -1,27 +1,35 @@
 public class TournamentSearch {
 	
-
+	public int searchForSecondLargestHelper(int[] numArray) {
+		int largest = searchForSecondLargest(numArray);
+		
+		int[] newNumArray = new int[ numArray.length-1 ];
+		
+		int index = 0;
+		int newIndex = 0;
+		while ( index < numArray.length) {
+			
+			if ( numArray[index] != largest ) {
+				newNumArray[newIndex] = numArray[index];
+				newIndex++;
+				index++;
+			} else {
+				index++;
+			}
+		}
+		
+		return searchForSecondLargest(newNumArray);
+	}
+	
 	// Find the second largest number in the array given using the tournament sort method
 	public int searchForSecondLargest(int[] numArray) {
 		
 		// Gets the length of the array 
 		int arrayLength = numArray.length;
-		System.out.println(arrayLength);
-		
-		for ( int i = 0; i < arrayLength; i++ ) {
-			System.out.print(" " + numArray[i] +  " ");
-		}
-		System.out.println();
-		
-		// Checks for arrays of length 3
-		if ( arrayLength == 3 ) {
-			int out = middle( numArray );
-			return out;
-		}
 		
 		// Checks to see if array is 2 then gets the min of the two and returns it
 		if (arrayLength == 2) {
-			return Math.min(numArray[0], numArray[1]);
+			return Math.max(numArray[0], numArray[1]);
 		}
 		
 		// Checks if array is a single number returns itself
@@ -41,7 +49,7 @@ public class TournamentSearch {
 		// Runs through the array comparing every 2 numbers and putting the max into the new array
 		for	( int i = 0; i < arrayLength; i = i + 2 ) {
 			
-			// Trys to compare i and i+1 to each other to put the max in new array
+			// Try to compare i and i+1 to each other to put the max in new array
 			try {
 				newArray[arrayPosition] = Math.max(numArray[i], numArray[i+1]);
 				arrayPosition++;	
@@ -55,24 +63,6 @@ public class TournamentSearch {
 		
 		// Recursively calls itself until the checks at the top of method returns
 		return searchForSecondLargest(newArray);
-	}
-	
-	// Gets the number that isn't smallest nor largest
-	public int middle(int[] numArray) {
-		
-		// Gets the largest of the numbers
-		int largest = Math.max( Math.max(numArray[0], numArray[1]), Math.max(numArray[1], numArray[2]) );
-		int tempLargest = Math.min(numArray[0], numArray[1]);
-		
-		for ( int i = 0; i < numArray.length; i++) {
-			
-			if ( numArray[i] != largest ) {
-				if ( tempLargest < numArray[i] ) {
-					tempLargest = numArray[i];
-				}
-			}
-		}
-		return tempLargest;
 	}
 	
 }
