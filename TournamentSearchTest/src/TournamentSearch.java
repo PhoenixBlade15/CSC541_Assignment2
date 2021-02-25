@@ -3,6 +3,19 @@ public class TournamentSearch {
 	public int searchForSecondLargestHelper(int[] numArray) {
 		int largest = searchForSecondLargest(numArray);
 		
+		// Gets the length of the array 
+		int arrayLength = numArray.length;
+				
+		// Checks if array is a single number returns itself
+		if ( arrayLength == 1) {
+			return numArray[0];
+		}
+		
+		// Checks if the array is 0 or less and then returns -1
+		if ( arrayLength <= 0 ) {
+			return -1;
+		}
+		
 		int[] newNumArray = new int[ numArray.length-1 ];
 		
 		int index = 0;
@@ -12,10 +25,10 @@ public class TournamentSearch {
 			if ( numArray[index] != largest ) {
 				newNumArray[newIndex] = numArray[index];
 				newIndex++;
-				index++;
 			} else {
-				index++;
+				largest = largest + 1;
 			}
+			index++;
 		}
 		
 		return searchForSecondLargest(newNumArray);

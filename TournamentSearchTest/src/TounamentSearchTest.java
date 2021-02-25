@@ -30,7 +30,29 @@ class TounamentSearchTest {
 	void testEmpty() {
 		TournamentSearch ts = new TournamentSearch();
 		
-		int[] inputArray = {21, 20, 5, 8, 7, 2, 12, 3, 1, 6, 9, 11};
+		int[] inputArray = {};
+		int expectedOutcome = -1;
+		
+		int outcome = ts.searchForSecondLargestHelper( inputArray );
+		assertEquals(expectedOutcome, outcome);
+	}
+	
+	@Test
+	void test1Number() {
+		TournamentSearch ts = new TournamentSearch();
+		
+		int[] inputArray = {21};
+		int expectedOutcome = 21;
+		
+		int outcome = ts.searchForSecondLargestHelper( inputArray );
+		assertEquals(expectedOutcome, outcome);
+	}
+	
+	@Test
+	void test2Numbers() {
+		TournamentSearch ts = new TournamentSearch();
+		
+		int[] inputArray = {21, 20};
 		int expectedOutcome = 20;
 		
 		int outcome = ts.searchForSecondLargestHelper( inputArray );
@@ -38,11 +60,11 @@ class TounamentSearchTest {
 	}
 	
 	@Test
-	void searchForSecondLargestTest2() {
+	void testDuplicates() {
 		TournamentSearch ts = new TournamentSearch();
 		
-		int[] inputArray = {21, 20, 5, 8, 7, 2, 12, 3, 1, 6, 9, 11};
-		int expectedOutcome = 20;
+		int[] inputArray = {5, 5, 5, 5, 5, 5, 5, 5};
+		int expectedOutcome = 5;
 		
 		int outcome = ts.searchForSecondLargestHelper( inputArray );
 		assertEquals(expectedOutcome, outcome);
